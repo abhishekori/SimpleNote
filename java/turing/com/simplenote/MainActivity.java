@@ -9,6 +9,7 @@ package turing.com.simplenote;
         import android.support.v4.view.MenuItemCompat;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.SearchView;
+        import android.util.Log;
         import android.view.KeyEvent;
         import android.view.Menu;
         import android.view.MenuInflater;
@@ -23,6 +24,7 @@ package turing.com.simplenote;
         import java.io.File;
         import java.io.FileWriter;
         import java.io.IOException;
+        import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     EditText note,subject;
@@ -36,14 +38,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         note = (EditText) findViewById(R.id.note);
         subject = (EditText) findViewById(R.id.subject);
-        Ssubject="default";
-        Snotes="default";
+
 
 
     }
 
     public void generateNoteOnSD(Context context, String sFileName, String sBody) {
-        Toast.makeText(context, "Saved hghg", Toast.LENGTH_SHORT).show();
+
         try {
             File root = new File(Environment.getExternalStorageDirectory(), "Notes");
             if (!root.exists()) {
@@ -60,25 +61,39 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-void saveContents(String note)
-{
+void writeNotes() {
+    Snotes=note.getText().toString();
+    Ssubject=subject.getText().toString();
+    //if(!Snotes.equals("default"))
+
+    if(!Snotes.isEmpty()) {
+        Calendar c = Calendar.getInstance();
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int month =c.get(Calendar.MONTH);
+        int year = c.get(Calendar.YEAR);
+        int hr=c.get(Calendar.HOUR);
+        int min=c.get(Calendar.MINUTE);
+        String fname= day+"/"+month+"/"+year+"_"+hr+":"+min+".txt";
+        Ssubject=(Ssubject.isEmpty())?fname:Ssubject;
+        Log.d("value",Ssubject+" "+Snotes);
+        generateNoteOnSD(this, Ssubject, Snotes);
+        note.setText("");
+        subject.setText("");
+    }
+
 
 }
     @Override
     protected void onPause() {
         super.onPause();
-        Snotes=note.getText().toString();
-        Ssubject=subject.getText().toString();
-        generateNoteOnSD(this,Ssubject,Snotes);
 
+        writeNotes();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Snotes=note.getText().toString();
-        Ssubject=subject.getText().toString();
-        generateNoteOnSD(this,Ssubject,Snotes);
+        writeNotes();
     }
 
     @Override

@@ -34,7 +34,7 @@ String path;
         for (int i=0; i < file.length; i++)
         {
             Log.d("Files", "FileName:" + file[i].getName());
-            Toast.makeText(this,"FileName:" + file[i].getName(),Toast.LENGTH_LONG).show();
+           // Toast.makeText(this,"FileName:" + file[i].getName(),Toast.LENGTH_LONG).show();
             mfiles.add(new Mfiles(file[i].getName().toString()));
 
         }
