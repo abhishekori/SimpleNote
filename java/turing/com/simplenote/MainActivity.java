@@ -2,6 +2,7 @@ package turing.com.simplenote;
 
         import android.app.Activity;
         import android.content.Context;
+        import android.content.Intent;
         import android.content.SharedPreferences;
         import android.os.Bundle;
         import android.os.Environment;
@@ -90,7 +91,8 @@ void saveContents(String note)
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.list:
-                Toast.makeText(this,"list",Toast.LENGTH_LONG).show();
+                //Toast.makeText(this,"list",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(this,NotesList.class));
                 break;
 
 
