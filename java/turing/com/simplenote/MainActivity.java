@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void generateNoteOnSD(Context context, String sFileName, String sBody) {
+        Toast.makeText(context, "Saved hghg", Toast.LENGTH_SHORT).show();
         try {
             File root = new File(Environment.getExternalStorageDirectory(), "Notes");
             if (!root.exists()) {
@@ -82,8 +83,18 @@ void saveContents(String note)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main_actions, menu);
-        
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.list:
+                Toast.makeText(this,"list",Toast.LENGTH_LONG).show();
+                break;
+
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
