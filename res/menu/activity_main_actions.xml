@@ -8,5 +8,12 @@
         app:showAsAction="ifRoom|collapseActionView"
          />
 
+    <item android:id="@+id/save"
+        android:orderInCategory="5"
+        android:title="save"
+        android:icon="@android:drawable/ic_menu_save"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
+
 
 </menu>
