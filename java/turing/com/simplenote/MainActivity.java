@@ -6,6 +6,8 @@ package turing.com.simplenote;
         import android.content.SharedPreferences;
         import android.os.Bundle;
         import android.os.Environment;
+        import android.support.design.widget.FloatingActionButton;
+        import android.support.design.widget.Snackbar;
         import android.support.v4.view.MenuItemCompat;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.SearchView;
@@ -39,7 +41,13 @@ public class MainActivity extends AppCompatActivity {
         note = (EditText) findViewById(R.id.note);
         subject = (EditText) findViewById(R.id.subject);
 
-
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                writeNotes();
+            }
+        });
 
     }
 

@@ -2,5 +2,6 @@
     <string name="app_name">Simple note</string>
     <string name="action_refresh">refresh</string>
     <string name="action_search">search</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
 </resources>
