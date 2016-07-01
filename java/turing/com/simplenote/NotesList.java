@@ -3,6 +3,7 @@ package turing.com.simplenote;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,9 +16,10 @@ import java.util.List;
 
 public class NotesList extends AppCompatActivity {
 
-    private List<Mfiles> mfiles;
+   // private List<Mfiles> mfiles=new ArrayList<>();
+    List<String> fileNames=new ArrayList<>();
     private RecyclerView rv;
-
+    FilesListAdapter adapter;
 
 
 String path;
@@ -25,31 +27,42 @@ String path;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_list);
-                path= Environment.getExternalStorageDirectory().toString()+"/Notes";
+
+        //mfiles=new ArrayList<>();
+
+
+        rv=(RecyclerView)findViewById(R.id.rv);
+        adapter = new FilesListAdapter(fileNames);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        rv.setLayoutManager(llm);
+       // rv.setHasFixedSize(true);
+        rv.setItemAnimator(new DefaultItemAnimator());
+        rv.setAdapter(adapter);
+
+        prepareData();
+
+
+    }
+
+    void prepareData(){
+        path= Environment.getExternalStorageDirectory().toString()+"/Notes";
         Log.d("Files", "Path: " + path);
         File f = new File(path);
         File file[] = f.listFiles();
         Log.d("Files", "Size: " + file.length);
-        mfiles=new ArrayList<>();
+
         for (int i=0; i < file.length; i++)
         {
             Log.d("Files", "FileName:" + file[i].getName());
-           // Toast.makeText(this,"FileName:" + file[i].getName(),Toast.LENGTH_LONG).show();
-            mfiles.add(new Mfiles(file[i].getName().toString()));
+            Toast.makeText(this,"FileName:" + file[i].getName(),Toast.LENGTH_LONG).show();
+            //mfiles.add(new Mfiles(file[i].getName().toString()));
+            fileNames.add(file[i].getName().toString());
 
         }
-
-        rv=(RecyclerView)findViewById(R.id.rv);
-
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        rv.setLayoutManager(llm);
-        rv.setHasFixedSize(true);
-
-        FilesListAdapter adapter = new FilesListAdapter(mfiles);
-        rv.setAdapter(adapter);
-
+        //Mfiles test=mfiles.get(2);
+        //Log.d("class",test.getName().toString());
+        adapter.notifyDataSetChanged();
     }
-
 
 
 

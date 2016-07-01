@@ -26,10 +26,11 @@ public class FilesListAdapter extends RecyclerView.Adapter<FilesListAdapter.File
         }
     }
 
-    List<Mfiles> mfiles;
+    List<String> mfiles;
 
-    FilesListAdapter(List<Mfiles> mfiles)
+    public FilesListAdapter(List<String> mfiles)
     {
+
         this.mfiles=mfiles;
     }
 
@@ -42,7 +43,8 @@ public class FilesListAdapter extends RecyclerView.Adapter<FilesListAdapter.File
 
     @Override
     public void onBindViewHolder(FilesListAdapter.FileViewHolder holder, final int position) {
-        holder.filename.setText(mfiles.get(position).fileName);
+       // Mfiles file = mfiles.get(position);
+        holder.filename.setText(mfiles.get(position));
         holder.filename.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +58,7 @@ public class FilesListAdapter extends RecyclerView.Adapter<FilesListAdapter.File
 
     @Override
     public int getItemCount() {
+
         return mfiles.size();
     }
 

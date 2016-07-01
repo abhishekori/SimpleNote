@@ -50,7 +50,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginTop="@dimen/fab_margint"
         android:layout_marginLeft="@dimen/fab_marginl"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:src="@android:drawable/ic_menu_save" />
 
 
 </RelativeLayout>

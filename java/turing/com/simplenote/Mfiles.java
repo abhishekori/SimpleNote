@@ -10,4 +10,9 @@ public class Mfiles {
     Mfiles(String fileName){
         this.fileName=fileName;
     }
+
+    public String getName(){
+        return fileName;
+
+    }
 }

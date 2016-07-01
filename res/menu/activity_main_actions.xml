@@ -4,7 +4,7 @@
     <item android:id="@+id/list"
         android:orderInCategory="5"
         android:title="Search"
-        android:icon="@android:drawable/ic_dialog_dialer"
+        android:icon="@android:drawable/ic_menu_agenda"
         app:showAsAction="ifRoom|collapseActionView"
          />
 
